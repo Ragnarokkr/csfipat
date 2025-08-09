@@ -1,7 +1,7 @@
 # A Novel Chrono-Spatial Framework for Italian Public Administration Timelines (CSFIPAT)
 
 ![Version](https://img.shields.io/badge/version-1.0-blue)
-![Status](https://img.shields.io/badge/status-secret-red)
+![Status](https://img.shields.io/badge/status-Don't_let_them_know-red)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ---
@@ -16,27 +16,28 @@ CSFIPAT is a revolutionary, scientifically-grounded methodology designed to prov
 
 The framework is built upon several meticulously defined factors:
 
-- **Messina Strait Temporal Factor ($F_T$)**: A macroscopic temporal correction factor derived from the historical duration of the Messina Strait Bridge project, from its first official proposal in 1866 to the present day.
+- **Messina Strait Temporal Factor ($F_{MSE}$)**: A macroscopic temporal correction factor derived from the historical duration of the Messina Strait Bridge project, from its first official proposal in 1866 to the present day.
 
-- **Travel Spatial Factor ($F_S$)**: A spatial component calculated from the time required to walk the entire length of Italy's longest road, the Strada Statale 16 "Adriatica".
+- **Travel Spatial Factor ($F_{TSC}$)**: A spatial component calculated from the time required to walk the entire length of Italy's longest road, the Strada Statale 16 "Adriatica".
 
-- **Micro-Bureaucratic Factors ($F_{MBF}$)**: A set of coefficients accounting for daily office rituals, including:
+- **Micro-Bureaucratic Factors**: A set of coefficients accounting for daily office rituals and non-working days, including:
   - The **Coffee Machine Chrono-Spatial Factor ($F_{CM}$)**
   - The **Cigarette Time Correction Factor ($F_{Cig}$)**
+  - The **Non-Operational Days Factor ($F_{NOD}$)**
 
 ## The CSFIPAT Formula
 
 The final, corrected project timeline ($D_{final}$) is calculated by applying all temporal and spatial factors to a base estimate ($D_{base}$).
 
-$D_{final} = D_{base} \times F_{T} \times F_{S} \times F_{CM} \times F_{Cig}$
+**$D_{final} = D_{base} \times F_{MSE} \times F_{TSC} \times F_{CM} \times F_{Cig} \times F_{NOD}$**
 
 ### Example Calculation
 
 An initial optimistic estimate of **100 days** is transformed by the CSFIPAT framework into:
 
-$D_{final} = 100 \times 15.961 \times 25.0015 \times 10.68 \times 1.39 \approx 592,396 \text{ days}$
+$D_{final} = 100 \times 15.9 \times 25.01675 \times 10.63 \times 1.43 \times 1.64 = 991,610.61 \text{ days}$
 
-Which is approximately **1,622 years**.
+Which is approximately **$2,714.88 \text{ years}$**.
 
 ## ⚠️ Disclaimer
 

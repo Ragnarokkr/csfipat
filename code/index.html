@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSFIPAT Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #f0f4f8;
+            --secondary-bg: #ffffff;
+            --gradient-start: #e2e8f0;
+            --gradient-end: #f7f9fc;
+            --text-color: #2d3748;
+            --heading-color: #1a202c;
+            --accent-color: #4a5568;
+            --border-color: #cbd5e0;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            --input-bg: #edf2f7;
+            --button-bg: #4a5568;
+            --button-hover-bg: #2d3748;
+            --button-text: #ffffff;
+            --success-color: #38a169;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background-color: var(--secondary-bg);
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px var(--shadow-color);
+            padding: 2.5rem;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: var(--heading-color);
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+        
+        .disclaimer {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        input[type="number"] {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            background-color: var(--input-bg);
+            transition: all 0.3s ease;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(74, 85, 104, 0.2);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            color: var(--button-text);
+            background-color: var(--button-bg);
+        }
+
+        button:hover {
+            background-color: var(--button-hover-bg);
+        }
+
+        #result-section {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border-color);
+            text-align: center;
+        }
+        
+        #result-section h2 {
+            border: none;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        #result {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--success-color);
+            word-wrap: break-word;
+        }
+
+        #result span {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-color);
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+            .container {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            #result {
+                font-size: 2rem;
+            }
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSFIPAT Timeline Calculator</h1>
+        <p class="disclaimer">
+            A novel chrono-spatial framework for Italian Public Administration timelines.
+        </p>
+
+        <form id="csfipat-form">
+            <h2>Base Timeline</h2>
+            <div class="input-group">
+                <div class="form-field">
+                    <label for="dBase">Base Timeline (D<sub>base</sub>) in Days:</label>
+                    <input type="number" id="dBase" value="100" required>
+                </div>
+            </div>
+
+            <h2>Macro-Factors</h2>
+            <div class="input-group">
+                <div class="form-field">
+                    <label for="fmse">Messina Strait Temporal Factor (F<sub>MSE</sub>):</label>
+                    <input type="number" id="fmse" value="15.9" step="0.001" required>
+                </div>
+                <div class="form-field">
+                    <label for="ftsc">Travel Spatial Factor (F<sub>S</sub>):</label>
+                    <input type="number" id="ftsc" value="25.01675" step="0.0001" required>
+                </div>
+            </div>
+            
+            <h2>Micro-Factors</h2>
+            <h3>Coffee Machine Factor (F<sub>CM</sub>)</h3>
+            <div class="input-group">
+                <div class="form-field">
+                    <label for="nEmployees">Number of Employees (N<sub>employees</sub>):</label>
+                    <input type="number" id="nEmployees" value="30" required>
+                </div>
+                <div class="form-field">
+                    <label for="pCoffee">Coffee Drinker Percentage (P<sub>coffee</sub>):</label>
+                    <input type="number" id="pCoffee" value="0.70" step="0.01" required>
+                </div>
+                <div class="form-field">
+                    <label for="tPrep">Coffee Prep Time (T<sub>prep</sub>) in seconds:</label>
+                    <input type="number" id="tPrep" value="300" required>
+                </div>
+                <div class="form-field">
+                    <label for="lQueue">Queue Length (L<sub>queue</sub>):</label>
+                    <input type="number" id="lQueue" value="5" required>
+                </div>
+                <div class="form-field">
+                    <label for="dCm">Distance to Machine (D<sub>cm</sub>) in meters:</label>
+                    <input type="number" id="dCm" value="15" required>
+                </div>
+            </div>
+            
+            <h3>Cigarette Factor (F<sub>Cig</sub>)</h3>
+            <div class="input-group">
+                <div class="form-field">
+                    <label for="tSmoke">Smoke Time (T<sub>smoke</sub>) in minutes:</label>
+                    <input type="number" id="tSmoke" value="5" required>
+                </div>
+                <div class="form-field">
+                    <label for="nSmokes">Cigarettes Smoked Daily (N<sub>smokes</sub>):</label>
+                    <input type="number" id="nSmokes" value="12" required>
+                </div>
+                <div class="form-field">
+                    <label for="pSmokers">Smoker Percentage (P<sub>smokers</sub>):</label>
+                    <input type="number" id="pSmokers" value="0.24" step="0.01" required>
+                </div>
+            </div>
+
+            <h3>Non-Operational Days Factor (F<sub>NOD</sub>)</h3>
+            <div class="input-group">
+                <div class="form-field">
+                    <label for="hNational">National Holidays (H<sub>national</sub>):</label>
+                    <input type="number" id="hNational" value="11" required>
+                </div>
+                <div class="form-field">
+                    <label for="wDays">Weekend Days (W<sub>days</sub>):</label>
+                    <input type="number" id="wDays" value="104" required>
+                </div>
+                <div class="form-field">
+                    <label for="tVacation">Annual Vacation Days (T<sub>vacation</sub>):</label>
+                    <input type="number" id="tVacation" value="26" required>
+                </div>
+                <div class="form-field">
+                    <label for="hRegional">Regional/Local Holidays (H<sub>regional</sub>):</label>
+                    <input type="number" id="hRegional" value="2" required>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="submit">Calculate Final Timeline</button>
+                <button type="button" onclick="resetForm()">Reset Values</button>
+            </div>
+        </form>
+
+        <section id="result-section">
+            <h2>Final Timeline (D<sub>final</sub>)</h2>
+            <div id="result">
+                0 <span>days</span>
+            </div>
+        </section>
+    </div>
+
+    <script src="csfipat.js"></script>
+    <script>
+        document.getElementById('csfipat-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            calculateTimeline();
+        });
+
+        function populateFormWithDefaults() {
+            // [Inference] The CSFIPAT.values object is assumed to contain keys for all
+            // calculator inputs, corresponding to their `id` and `<label>`.
+            // This populates the form with those default values from the library.
+            const mapping = {
+                'dBase': 0,
+                'fmse': CSFIPAT.calculateFCM(),
+                'ftsc': CSFIPAT.calculateFTSC(),
+                'nEmployees': 0,
+                'pCoffee': 'P_coffee',
+                'tPrep': 'T_prep',
+                'lQueue': 0,
+                'dCm': 0,
+                'tSmoke': 'T_smoke',
+                'nSmokes': 'N_smokes',
+                'pSmokers': 'P_smokers',
+                'hNational': 'H_national',
+                'wDays': 'W_days',
+                'tVacation': 'T_vacation',
+                'hRegional': 'H_regional'
+            };
+
+            for (const id in mapping) {
+                const element = document.getElementById(id);
+                const libraryKey = mapping[id];
+                if (typeof libraryKey === 'string') {
+                    element.value = CSFIPAT.values[libraryKey] ?? 1;
+                }
+            }
+        }
+
+        function calculateTimeline() {
+            // Get the result element
+            const resultElement = document.getElementById('result');
+
+            // --- Get all values from form inputs ---
+            const dBase = parseFloat(document.getElementById('dBase').value);
+            const fmse = parseFloat(document.getElementById('fmse').value);
+            const ftsc = parseFloat(document.getElementById('ftsc').value);
+
+            // F_CM inputs
+            const nEmployees = parseFloat(document.getElementById('nEmployees').value);
+            const pCoffee = parseFloat(document.getElementById('pCoffee').value);
+            const tPrep = parseFloat(document.getElementById('tPrep').value);
+            const lQueue = parseFloat(document.getElementById('lQueue').value);
+            const dCm = parseFloat(document.getElementById('dCm').value);
+
+            // F_Cig inputs
+            const tSmoke = parseFloat(document.getElementById('tSmoke').value);
+            const nSmokes = parseFloat(document.getElementById('nSmokes').value);
+            const pSmokers = parseFloat(document.getElementById('pSmokers').value);
+
+            // F_NOD inputs
+            const hNational = parseFloat(document.getElementById('hNational').value);
+            const wDays = parseFloat(document.getElementById('wDays').value);
+            const tVacation = parseFloat(document.getElementById('tVacation').value);
+            const hRegional = parseFloat(document.getElementById('hRegional').value);
+
+            // --- Update CSFIPAT values before calculation ---
+            // This allows the library to use the user's custom values for its calculations
+            CSFIPAT.values.P_coffee = pCoffee;
+            CSFIPAT.values.T_prep = tPrep;
+            CSFIPAT.values.T_smoke = tSmoke;
+            CSFIPAT.values.N_smokes = nSmokes;
+            CSFIPAT.values.P_smokers = pSmokers;
+            CSFIPAT.values.H_national = hNational;
+            CSFIPAT.values.W_days = wDays;
+            CSFIPAT.values.T_vacation = tVacation;
+            CSFIPAT.values.H_regional = hRegional;
+
+            // --- Use the library to calculate factors ---
+            const fCm = CSFIPAT.calculateFCM(nEmployees, lQueue, dCm);
+            const fCig = CSFIPAT.calculateFCig(nEmployees);
+            const fNod = CSFIPAT.calculateFNOD();
+
+            // --- Calculate the final timeline ---
+            // We use the user-provided F_MSE and F_S directly from the form,
+            // and the library-calculated values for the other factors.
+            const dFinal = dBase * fmse * ftsc * fCm * fCig * fNod;
+
+            // --- Display the results ---
+            if (isNaN(dFinal) || !isFinite(dFinal)) {
+                resultElement.innerHTML = 'Invalid input. Please check values.';
+                return;
+            }
+
+            const resultDays = dFinal.toLocaleString(undefined, { maximumFractionDigits: 1 });
+            const resultYears = dFinal / CSFIPAT.values.N_working_days_year;
+            const resultYearsRounded = resultYears.toLocaleString(undefined, { maximumFractionDigits: 1 });
+
+            resultElement.innerHTML = `${resultDays} <span>days</span><br>or<br>${resultYearsRounded} <span>years</span>`;
+        }
+
+        function resetForm() {
+            populateFormWithDefaults();
+            // Re-run calculation with default values after reset
+            calculateTimeline();
+        }
+
+        // Run calculation on page load with default values
+        document.addEventListener('DOMContentLoaded', () => {
+            populateFormWithDefaults();
+            calculateTimeline();
+        });
+    </script>
+</body>
+</html>
